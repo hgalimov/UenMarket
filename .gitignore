@@ -1,0 +1,12 @@
+.idea/*
+target
+.mvn
+*.iml
+
+*.class
+
+*.war
+*.jar
+*.ear
+*.txt
+*.properties
