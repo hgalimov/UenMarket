@@ -29,6 +29,7 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
+        userService.saveUser(user);
         /*if (!user.getPassword().equals(user.getPasswordConfirm())){
             model.addAttribute("passwordError", "Пароли не совпадают");
             return "registration";
