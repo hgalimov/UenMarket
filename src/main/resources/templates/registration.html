@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:form="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
   <meta charset="utf-8">
@@ -8,27 +7,25 @@
 </head>
 
 <body>
-<div>
-  <form:form method="POST" modelAttribute="userForm">
-    <h2>Регистрация</h2>
-    <div>
-      <form:input type="text" path="username" placeholder="Username"
-                  autofocus="true"></form:input>
-      <form:errors path="username"></form:errors>
-        ${usernameError}
-    </div>
-    <div>
-      <form:input type="password" path="password" placeholder="Password"></form:input>
-    </div>
-    <div>
-      <form:input type="password" path="passwordConfirm"
-                  placeholder="Confirm your password"></form:input>
-      <form:errors path="password"></form:errors>
-        ${passwordError}
-    </div>
-    <button type="submit">Зарегистрироваться</button>
-  </form:form>
-  <a href="/">Главная</a>
-</div>
+  <div>
+    <form method="POST" th:object="${user}">
+      <label for="username">Введите имя пользователя</label>
+      <input type="text" th:field="*{username}" id="username"/>
+      <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+      <br/>
+      <label for="password">Введите пароль</label>
+      <input type="password" th:field="*{password}" id="password"/>
+      <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+      <br/>
+      <label for="passwordConfirm">Подтвердите пароль</label>
+      <input type="password" th:field="*{passwordConfirm}" id="passwordConfirm"/>
+      <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+      <br/>
+      <input type="submit" value="Зарегистрироваться!"/>
+    </form>
+    <p th:text="${usernameError}">Ошибка польз</p>
+    <p th:text="${passwordError}">Ошибка пароль</p>
+    <a href="/">Главная</a>
+  </div>
 </body>
 </html>
